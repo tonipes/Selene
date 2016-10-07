@@ -23,8 +23,10 @@ endif()
 
 include_directories(${LUA_INCLUDE_DIR})
 
+# set(LUA_INCLUDE_DIR ${LUA_INCLUDE_DIR} PARENT_SCOPE)
+
 if(APPLE)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++11 -stdlib=libc++")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++11 -stdlib=libc++ -llua")
 elseif(UNIX)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++11")
 elseif(WIN32)
@@ -32,8 +34,10 @@ elseif(WIN32)
 endif(APPLE)
 
 include_directories(include)
-file(GLOB headers RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
-  include/*.h include/selene/*.h)
+# file(GLOB headers RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
+#   include/*.h include/selene/*.h)
 
-add_executable(test_runner ${CMAKE_CURRENT_SOURCE_DIR}/test/Test.cpp)
-target_link_libraries(test_runner ${LUA_LIBRARIES})
+# set(SELENE_HEADERS ${headers} PARENT_SCOPE)
+
+# add_executable(test_runner ${CMAKE_CURRENT_SOURCE_DIR}/test/Test.cpp)
+# target_link_libraries(test_runner ${LUA_LIBRARIES})
